@@ -4,10 +4,10 @@ May 16, 2015
 
 ###Loading and preprocessing the data
 
-For performing the analysis presented in this report the data can be download 
+For performing the analysis presented in this report, the data can be download 
 from [here](https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip).
 
-Initially all the needed libraries are loaded using the lines:
+Initially, all the needed libraries are loaded using the lines:
 
 
 ```r
@@ -16,8 +16,8 @@ library(plyr)
 library(ggplot2)
 ```
 
-The following lines autommatically download the file into the working directory, 
-unzip it and delete the zip file for keeping the workding directory clean.
+The following lines automatically download the file into the working directory, 
+unzip it and delete the zip file for keeping the working directory clean.
 
 
 ```r
@@ -33,7 +33,7 @@ file.remove(file.zip)
 ## [1] TRUE
 ```
 
-The unzipped file, which is in csv file, is read with the commands in the next 
+The unzipped file, which is in the csv file, is read with the commands in the next 
 lines.
 
 
@@ -66,7 +66,7 @@ head(activity.dt)
 ## 6:    NA 2012-10-01       25
 ```
 
-The commands following cleans the dataset removing any NA entrie, creating 
+The commands following cleans the dataset removing any NA entries, creating 
 a new dataset without missing values.
 
 
@@ -170,9 +170,9 @@ na.number <- nrow(activity.dt[is.na(activity.dt$steps)])
 
 A number of **2304** entries in the dataset has **missing values**.
 
-For filling the gaps in the dataset, the commands shown in the lines following 
+For filling the gaps in the dataset, the commands shown in the lines that follows 
 replace the NA steps with the mean steps values, in integer, from the equivalent 
-interval .
+interval.
 
 
 ```r

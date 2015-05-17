@@ -70,12 +70,12 @@ img {
 
 <div id="loading-and-preprocessing-the-data" class="section level3">
 <h3>Loading and preprocessing the data</h3>
-<p>For performing the analysis presented in this report the data can be download from <a href="https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip">here</a>.</p>
-<p>Initially all the needed libraries are loaded using the lines:</p>
+<p>For performing the analysis presented in this report, the data can be download from <a href="https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip">here</a>.</p>
+<p>Initially, all the needed libraries are loaded using the lines:</p>
 <pre class="r"><code>library(data.table)
 library(plyr)
 library(ggplot2)</code></pre>
-<p>The following lines autommatically download the file into the working directory, unzip it and delete the zip file for keeping the workding directory clean.</p>
+<p>The following lines automatically download the file into the working directory, unzip it and delete the zip file for keeping the working directory clean.</p>
 <pre class="r"><code>file.src = &quot;https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip&quot;
 file.zip = &quot;repdata_data_activity.zip&quot;
 dwmethod = &quot;curl&quot;
@@ -83,7 +83,7 @@ download.file(url = file.src, destfile = file.zip, method = dwmethod)
 unzip(file.zip)
 file.remove(file.zip)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<p>The unzipped file, which is in csv file, is read with the commands in the next lines.</p>
+<p>The unzipped file, which is in the csv file, is read with the commands in the next lines.</p>
 <pre class="r"><code>file.csv = &quot;activity.csv&quot;
 activity.dt &lt;- data.table(read.csv(file.csv))</code></pre>
 <p>The variable data is formated accordingly using the following code line:</p>
@@ -97,7 +97,7 @@ activity.dt &lt;- data.table(read.csv(file.csv))</code></pre>
 ## 4:    NA 2012-10-01       15
 ## 5:    NA 2012-10-01       20
 ## 6:    NA 2012-10-01       25</code></pre>
-<p>The commands following cleans the dataset removing any NA entrie, creating a new dataset without missing values.</p>
+<p>The commands following cleans the dataset removing any NA entries, creating a new dataset without missing values.</p>
 <pre class="r"><code>activity.dt.clean &lt;- activity.dt[!is.na(activity.dt$steps)]
 head(activity.dt.clean)</code></pre>
 <pre><code>##    steps       date interval
@@ -156,7 +156,7 @@ ggplot(data=steps.interval.mean, aes(x=interval, y=steps)) +
 <h3>Imputing missing values</h3>
 <pre class="r"><code>na.number &lt;- nrow(activity.dt[is.na(activity.dt$steps)])</code></pre>
 <p>A number of <strong>2304</strong> entries in the dataset has <strong>missing values</strong>.</p>
-<p>For filling the gaps in the dataset, the commands shown in the lines following replace the NA steps with the mean steps values, in integer, from the equivalent interval .</p>
+<p>For filling the gaps in the dataset, the commands shown in the lines that follows replace the NA steps with the mean steps values, in integer, from the equivalent interval.</p>
 <pre class="r"><code>na_replacement.dt &lt;- merge(activity.dt[is.na(activity.dt$steps)],
                            steps.interval.mean,by=&quot;interval&quot;,
                            , all = TRUE)
